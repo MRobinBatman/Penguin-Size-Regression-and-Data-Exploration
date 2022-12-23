@@ -2,15 +2,11 @@ library(readr)
 library(ggplot2)
 library(plotly)
 
-#wd = getwd()
-#filepath = paste(wd,"/penguins_size.csv",sep="")
 
 #Getting the current dir and setting the working dir
 dir <- dirname(rstudioapi::getSourceEditorContext()$path)
 setwd(dir)
 
-
-#penguins_size <- read.csv("C:/Users/Micha/OneDrive/School/College/USC Fall 2022/CSCE - 567 - Vizualization Tools/Hw 1 - Tabeau/penguins_size.csv")
 penguins_size <- read.csv("penguins_size.csv")
 View(penguins_size)
 
@@ -20,8 +16,8 @@ summary(penguins_size)
 table(penguins_size$sex)
 
 ggplotly(
-ggplot(data=penguins_size) + 
-  geom_point(mapping=aes(x=body_mass_g, y=culmen_length_mm, color=species)))
+  ggplot(data=penguins_size) + 
+    geom_point(mapping=aes(x=body_mass_g, y=culmen_length_mm, color=species)))
 #The correlation is different for looking at just the species, vs penguins as a whole
 
 chinstrap <- penguins_size[penguins_size$species=="Chinstrap",]
@@ -63,7 +59,7 @@ View(gentoo)
 
 #Showing the data in a 3D space
 plot_ly(data=gentoo, x=gentoo$body_mass_g,y=gentoo$culmen_length_mm,
-       z=gentoo$culmen_depth_mm,mode="markers",type="scatter3d", color=gentoo$culmen_depth_mm)
+        z=gentoo$culmen_depth_mm,mode="markers",type="scatter3d", color=gentoo$culmen_depth_mm)
 #Showing how our predictions lie on a 3D plane
 plot_ly(data=gentoo, x=gentoo$body_mass_g,y=gentoo$culmen_length_mm,
         z=gentoo$predicted_depth_2,mode="markers",type="scatter3d", color=gentoo$culmen_depth_mm)
